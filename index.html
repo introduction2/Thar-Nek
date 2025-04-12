@@ -241,6 +241,40 @@ I když vypadá jako unavený poutník, jeho ruce stále dokážou vytvarovat oc
     </div>
   </div>
 
+  <form id="claimForm">
+<input type="hidden" name="postava" value="Ro'Xazeel">
+<label for="email">Zadej svůj e-mail (pro odemčení lore):</label><br>
+<input type="email" name="email" required><br><br>
+<button type="submit">Zapsat do sbírky</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+document.getElementById("claimForm").addEventListener("submit", function(e) {
+e.preventDefault();
+const formData = new FormData(this);
+fetch("https://script.google.com/macros/s/AKfycbxVWzHN0sGmOTn2jqTR0TAnQQGng_6XvyYVhR6VuWbubnhOYFBKKLm7zf15YAtZqPVL/exec", {
+method: "POST",
+body: JSON.stringify({
+email: formData.get("email"),
+postava: formData.get("postava"),
+id: Math.random().toString(36).substring(2) // nebo cookie/UUID
+}),
+headers: {
+"Content-Type": "application/json"
+}
+})
+.then(res => res.json())
+.then(data => {
+document.getElementById("result").textContent = "Postava zapsána!";
+})
+.catch(() => {
+document.getElementById("result").textContent = "Nastala chyba.";
+});
+});
+</script>
+
   <script>
     const enterBtn = document.getElementById('enterBtn');
     const entryScreen = document.querySelector('.entry-screen');
