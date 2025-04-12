@@ -255,12 +255,11 @@ document.getElementById("claimForm").addEventListener("submit", function(e) {
 e.preventDefault();
 const formData = new FormData(this);
 fetch("https://script.google.com/macros/s/AKfycbxVWzHN0sGmOTn2jqTR0TAnQQGng_6XvyYVhR6VuWbubnhOYFBKKLm7zf15YAtZqPVL/exec", {
-method: "POST",
-body: JSON.stringify({
-email: formData.get("email"),
-postava: formData.get("postava"),
-id: Math.random().toString(36).substring(2) // nebo cookie/UUID
-}),
+  method: "POST",
+  mode: "no-cors", // zásadní pro CORS blok
+  body: JSON.stringify(data),
+  headers: {
+    "Content-Type": "application/json"
 headers: {
 "Content-Type": "application/json"
 }
