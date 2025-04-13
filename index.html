@@ -215,16 +215,20 @@
       <img src="https://raw.githubusercontent.com/introduction2/Thar-Nek/main/Rugged%20Alien%20Blacksmith%20Portrait%20With%20Glowing%20Orange%20Eyes.png"> <alt="Postava">
     </div>
 
-    <form id="claimForm">
+    <!-- Skrytý iframe, do kterého se odešle formulář -->
+<iframe name="hidden_iframe" style="display:none;"></iframe>
+
+<!-- Formulář pro zapsání postavy -->
+<form id="claimForm" action="https://script.google.com/macros/s/AKfycbxVWzHN0sGmOTn2jqTR0TAnQQGng_6XvyYVhR6VuWbubnhOYFBKKLm7zf15YAtZqPVL/exec" method="POST" target="hidden_iframe" onsubmit="handleFormSubmit()">
   <input type="hidden" name="postava" value="Ro'Xazeel">
   <label for="email">Zadej svůj e-mail (pro odemčení lore):</label><br>
   <input type="email" name="email" required><br><br>
   <button type="submit">Zapsat do sbírky</button>
 </form>
 
+<!-- Výpis výsledku -->
 <div id="result"></div>
-
-    <div class="right">
+      <div class="right">
       <div class="stars">
         <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
         <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
@@ -276,32 +280,10 @@ I když vypadá jako unavený poutník, jeho ruce stále dokážou vytvarovat oc
     });
   </script>
 
-  <script>
-document.getElementById("claimForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-
-  const formData = new FormData(this);
-
-  const data = {
-    email: formData.get("email"),
-    postava: formData.get("postava")
-  };
-
-  fetch("https://script.google.com/macros/s/AKfycbxVWzHN0sGmOTn2jqTR0TAnQQGng_6XvyYVhR6VuWbubnhOYFBKKLm7zf15YAtZqPVL/exec", {
-    method: "POST",
-    mode: "no-cors",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
-  .then(() => {
-    document.getElementById("result").textContent = "Postava zapsána!";
-  })
-  .catch(() => {
-    document.getElementById("result").textContent = "Nastala chyba.";
-  });
-});
+<script>
+function handleFormSubmit() {
+  document.getElementById("result").textContent = "✅ Postava byla úspěšně zapsána do sbírky!";
+}
 </script>
 
 </body>
