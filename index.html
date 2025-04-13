@@ -282,19 +282,32 @@ document.getElementById("claimForm").addEventListener("submit", function(e) {
 
   const formData = new FormData(this);
 
+  // Logování pro ověření, co je odesíláno
+  formData.forEach((value, key) => {
+    console.log(key + ": " + value);  // Logování hodnoty každého pole
+  });
+
   fetch("https://script.google.com/macros/s/AKfycbxDfys8yW34xZZdQtSviPBDYUhHv-m21RPlxVmfUs-ftH6i85wavQyC6LOf4Fv9sqks/exec", {
     method: "POST",
     body: formData
   })
-  .then(res => res.text())
+  .then(res => {
+    if (!res.ok) {
+      throw new Error("Server odpověděl s chybou: " + res.status);
+    }
+    return res.text();
+  })
   .then(data => {
+    console.log(data);  // Logování odpovědi z serveru
     document.getElementById("result").textContent = "Postava zapsána!";
   })
-  .catch(() => {
+  .catch((err) => {
+    console.error(err);  // Logování chyby pro lepší debugování
     document.getElementById("result").textContent = "Nastala chyba.";
   });
 });
 </script>
+
 
   
 </body>
