@@ -275,7 +275,6 @@ I když vypadá jako unavený poutník, jeho ruce stále dokážou vytvarovat oc
       }, 3000);
     });
   </script>
-
 <script>
 document.getElementById("claimForm").addEventListener("submit", function(e) {
   e.preventDefault();
@@ -289,24 +288,19 @@ document.getElementById("claimForm").addEventListener("submit", function(e) {
 
   fetch("https://script.google.com/macros/s/AKfycbxDfys8yW34xZZdQtSviPBDYUhHv-m21RPlxVmfUs-ftH6i85wavQyC6LOf4Fv9sqks/exec", {
     method: "POST",
-    body: formData
+    body: formData,
+    mode: 'no-cors' // Tato změna obejde CORS, ale nedostaneš zpět odpověď serveru
   })
-  .then(res => {
-    if (!res.ok) {
-      throw new Error("Server odpověděl s chybou: " + res.status);
-    }
-    return res.text();
-  })
-  .then(data => {
-    console.log(data);  // Logování odpovědi z serveru
+  .then(() => {
+    // Odpověď nebude dostupná, ale můžeme stále informovat uživatele
     document.getElementById("result").textContent = "Postava zapsána!";
   })
-  .catch((err) => {
-    console.error(err);  // Logování chyby pro lepší debugování
+  .catch(() => {
     document.getElementById("result").textContent = "Nastala chyba.";
   });
 });
 </script>
+
 
 
   
