@@ -215,6 +215,15 @@
       <img src="https://raw.githubusercontent.com/introduction2/Thar-Nek/main/Rugged%20Alien%20Blacksmith%20Portrait%20With%20Glowing%20Orange%20Eyes.png"> <alt="Postava">
     </div>
 
+<form id="claimForm">
+  <input type="hidden" name="postava" value="Ro'Xazeel">
+  <label for="email">Zadej svůj e-mail (pro odemčení lore):</label><br>
+  <input type="email" name="email" required><br><br>
+  <button type="submit">Zapsat do sbírky</button>
+</form>
+
+<div id="result"></div>
+    
 <!-- Výpis výsledku -->
 <div id="result"></div>
       <div class="right">
@@ -244,15 +253,7 @@ I když vypadá jako unavený poutník, jeho ruce stále dokážou vytvarovat oc
     </div>
   </div>
 
-<form id="claimForm">
-  <input type="hidden" name="postava" value="Ro'Xazeel">
-  <label for="email">Zadej svůj e-mail (pro odemčení lore):</label><br>
-  <input type="email" name="email" required><br><br>
-  <button type="submit">Zapsat do sbírky</button>
-</form>
-
-<div id="result"></div>
-
+  <script>
 <script>
 document.getElementById("claimForm").addEventListener("submit", function(e) {
   e.preventDefault();
@@ -273,8 +274,7 @@ document.getElementById("claimForm").addEventListener("submit", function(e) {
 });
 </script>
 
-
-  <script>
+    
     const enterBtn = document.getElementById('enterBtn');
     const entryScreen = document.querySelector('.entry-screen');
     const intro = document.getElementById('intro');
