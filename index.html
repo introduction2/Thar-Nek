@@ -255,6 +255,32 @@ I když vypadá jako unavený poutník, jeho ruce stále dokážou vytvarovat oc
     </div>
   </div>
 
+<!-- Skrytý iframe pro odeslání -->
+<iframe name="hidden_iframe" style="display:none;"></iframe>
+
+<!-- Formulář -->
+<form id="claimForm"
+      action="https://script.google.com/macros/s/AKfycbxVWzHN0sGmOTn2jqTR0TAnQQGng_6XvyYVhR6VuWbubnhOYFBKKLm7zf15YAtZqPVL/exec"
+      method="POST"
+      target="hidden_iframe"
+      onsubmit="handleFormSubmit()">
+
+  <input type="hidden" name="postava" value="Ro'Xazeel">
+  
+  <label for="email">Zadej svůj e-mail (pro odemčení lore):</label><br>
+  <input type="email" name="email" required><br><br>
+  
+  <button type="submit">Zapsat do sbírky</button>
+</form>
+
+<!-- Výstup -->
+<div id="result" style="margin-top: 10px;"></div>
+
+<script>
+function handleFormSubmit() {
+  document.getElementById("result").textContent = "✅ Postava byla úspěšně zapsána do sbírky!";
+}
+</script>
 
 
   <script>
@@ -279,12 +305,6 @@ I když vypadá jako unavený poutník, jeho ruce stále dokážou vytvarovat oc
       }, 3000);
     });
   </script>
-
-<script>
-function handleFormSubmit() {
-  document.getElementById("result").textContent = "✅ Postava byla úspěšně zapsána do sbírky!";
-}
-</script>
 
 </body>
 </html>
