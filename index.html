@@ -254,27 +254,6 @@ I když vypadá jako unavený poutník, jeho ruce stále dokážou vytvarovat oc
   </div>
 
   <script>
-<script>
-document.getElementById("claimForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-
-  const formData = new FormData(this);
-
-  fetch("https://script.google.com/macros/s/AKfycbxVWzHN0sGmOTn2jqTR0TAnQQGng_6XvyYVhR6VuWbubnhOYFBKKLm7zf15YAtZqPVL/exec", {
-    method: "POST",
-    body: formData
-  })
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById("result").textContent = "Postava zapsána!";
-  })
-  .catch(() => {
-    document.getElementById("result").textContent = "Nastala chyba.";
-  });
-});
-</script>
-
-    
     const enterBtn = document.getElementById('enterBtn');
     const entryScreen = document.querySelector('.entry-screen');
     const intro = document.getElementById('intro');
@@ -297,5 +276,26 @@ document.getElementById("claimForm").addEventListener("submit", function(e) {
     });
   </script>
 
+<script>
+document.getElementById("claimForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const formData = new FormData(this);
+
+  fetch("https://script.google.com/macros/s/AKfycbxVWzHN0sGmOTn2jqTR0TAnQQGng_6XvyYVhR6VuWbubnhOYFBKKLm7zf15YAtZqPVL/exec", {
+    method: "POST",
+    body: formData
+  })
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("result").textContent = "Postava zapsána!";
+  })
+  .catch(() => {
+    document.getElementById("result").textContent = "Nastala chyba.";
+  });
+});
+</script>
+
+  
 </body>
 </html>
