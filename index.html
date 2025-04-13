@@ -215,17 +215,6 @@
       <img src="https://raw.githubusercontent.com/introduction2/Thar-Nek/main/Rugged%20Alien%20Blacksmith%20Portrait%20With%20Glowing%20Orange%20Eyes.png"> <alt="Postava">
     </div>
 
-    <!-- Skrytý iframe, do kterého se odešle formulář -->
-<iframe name="hidden_iframe" style="display:none;"></iframe>
-
-<!-- Formulář pro zapsání postavy -->
-<form id="claimForm" action="https://script.google.com/macros/s/AKfycbxVWzHN0sGmOTn2jqTR0TAnQQGng_6XvyYVhR6VuWbubnhOYFBKKLm7zf15YAtZqPVL/exec" method="POST" target="hidden_iframe" onsubmit="handleFormSubmit()">
-  <input type="hidden" name="postava" value="Ro'Xazeel">
-  <label for="email">Zadej svůj e-mail (pro odemčení lore):</label><br>
-  <input type="email" name="email" required><br><br>
-  <button type="submit">Zapsat do sbírky</button>
-</form>
-
 <!-- Výpis výsledku -->
 <div id="result"></div>
       <div class="right">
@@ -255,32 +244,23 @@ I když vypadá jako unavený poutník, jeho ruce stále dokážou vytvarovat oc
     </div>
   </div>
 
-<!-- Skrytý iframe pro odeslání -->
 <iframe name="hidden_iframe" style="display:none;"></iframe>
 
-<!-- Formulář -->
-<form id="claimForm"
-      action="https://script.google.com/macros/s/AKfycbxVWzHN0sGmOTn2jqTR0TAnQQGng_6XvyYVhR6VuWbubnhOYFBKKLm7zf15YAtZqPVL/exec"
-      method="POST"
-      target="hidden_iframe"
-      onsubmit="handleFormSubmit()">
-
+<form action="https://script.google.com/macros/s/AKfycbxVWzHN0sGmOTn2jqTR0TAnQQGng_6XvyYVhR6VuWbubnhOYFBKKLm7zf15YAtZqPVL/exec" method="POST" target="hidden_iframe" onsubmit="formZapsano()">
   <input type="hidden" name="postava" value="Ro'Xazeel">
-  
   <label for="email">Zadej svůj e-mail (pro odemčení lore):</label><br>
   <input type="email" name="email" required><br><br>
-  
   <button type="submit">Zapsat do sbírky</button>
 </form>
 
-<!-- Výstup -->
 <div id="result" style="margin-top: 10px;"></div>
 
 <script>
-function handleFormSubmit() {
+function formZapsano() {
   document.getElementById("result").textContent = "✅ Postava byla úspěšně zapsána do sbírky!";
 }
 </script>
+
 
 
   <script>
