@@ -244,22 +244,35 @@ I když vypadá jako unavený poutník, jeho ruce stále dokážou vytvarovat oc
     </div>
   </div>
 
-<iframe name="hidden_iframe" style="display:none;"></iframe>
-
-<form action="https://script.google.com/macros/s/AKfycbxVWzHN0sGmOTn2jqTR0TAnQQGng_6XvyYVhR6VuWbubnhOYFBKKLm7zf15YAtZqPVL/exec" method="POST" target="hidden_iframe" onsubmit="formZapsano()">
+<form id="claimForm">
   <input type="hidden" name="postava" value="Ro'Xazeel">
   <label for="email">Zadej svůj e-mail (pro odemčení lore):</label><br>
   <input type="email" name="email" required><br><br>
   <button type="submit">Zapsat do sbírky</button>
 </form>
 
-<div id="result" style="margin-top: 10px;"></div>
+<div id="result"></div>
 
 <script>
-function formZapsano() {
-  document.getElementById("result").textContent = "✅ Postava byla úspěšně zapsána do sbírky!";
-}
+document.getElementById("claimForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const formData = new FormData(this);
+
+  fetch("https://script.google.com/macros/s/AKfycbxVWzHN0sGmOTn2jqTR0TAnQQGng_6XvyYVhR6VuWbubnhOYFBKKLm7zf15YAtZqPVL/exec", {
+    method: "POST",
+    body: formData
+  })
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("result").textContent = "Postava zapsána!";
+  })
+  .catch(() => {
+    document.getElementById("result").textContent = "Nastala chyba.";
+  });
+});
 </script>
+
 
   <script>
     const enterBtn = document.getElementById('enterBtn');
